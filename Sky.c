@@ -4,6 +4,7 @@
 
 #include "Sky.h"
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -11,6 +12,9 @@ Sky *createSky(int height, int width) {
   Sky *sky = malloc(sizeof(Sky));
   sky->height = height;
   sky->width = width;
+  for (int i = 0; i < 10; i++)
+    sky->mobs[i] = 0; // null insurance
+  sky->used_mobs = 0;
   return sky;
 }
 
@@ -24,8 +28,23 @@ void displaySky(Sky *sky) {
   if (!sky)
     return;
   for (unsigned int i = 0; i < sky->height; i++) {
-    for (unsigned int j = 0; j < sky->width; j++)
-      putchar(EMPTY_SKY_TILE);
+    for (unsigned int j = 0; j < sky->width; j++) {
+      bool found = false;
+      for (unsigned int mob = 0; mob < sky->used_mobs; mob++) {
+        Mobile *m = sky->mobs[mob];
+        // coords check
+        int diffX = getMobileX(m) - i;
+        int diffY = getMobileY(m) - j;
+        // overlap check
+        if (diffX <= 5 || diffY <= 5) {
+          putchar(getMobileSprite(m)->symbols[diffY][diffX]);
+          // TODO fetch orientation
+          break;
+        }
+      }
+      if (!found)
+        putchar(EMPTY_SKY_TILE);
+    }
     putchar('\n');
   }
 }
@@ -43,6 +62,10 @@ int getSkyWidth(Sky *sky) {
 }
 
 void putMobileOnSky(Sky *sky, Mobile *mobile) {
-  if (!sky)
+  if (!sky || !mobile)
     return;
+  if (sky->used_mobs >= 10)
+    return;
+  sky->mobs[sky->used_mobs] = mobile;
+  sky->used_mobs++;
 }

@@ -10,24 +10,27 @@ typedef struct {
   int x;
   int y;
   Direction direction;
+  Sprite *sprite;
 } Mobile;
 
-Mobile* createMobile(int x, int y, Direction direction);
+Mobile *createMobile(int x, int y, Direction direction, Sprite *sprite);
 
-void destroyMobile(Mobile* mobile);
+Mobile *createPlane(int x, int y, Direction direction);
 
-int getMobileX(Mobile* mobile);
+void destroyMobile(Mobile *mobile);
 
-int getMobileY(Mobile* mobile);
+int getMobileX(Mobile *mobile);
 
-Direction getDirection(Mobile* mobile);
+int getMobileY(Mobile *mobile);
 
-void turnMobileLeft(Mobile* mobile);
+Direction getDirection(Mobile *mobile);
 
-void turnMobileRight(Mobile* mobile);
+void turnMobileLeft(Mobile *mobile);
 
-Sprite* getMobileSprite(Mobile* mobile);
+void turnMobileRight(Mobile *mobile);
 
-void moveMobileForward(Mobile* mobile);
+Sprite *getMobileSprite(Mobile *mobile);
 
-#endif //JUNIA_ISEN3_TOPGUN__MOBILE_H_
+void moveMobileForward(Mobile *mobile);
+
+#endif // JUNIA_ISEN3_TOPGUN__MOBILE_H_

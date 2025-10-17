@@ -4,22 +4,25 @@
 #include "Mobile.h"
 #ifndef JUNIA_ISEN3_TOPGUN__SKY_H_
 #define JUNIA_ISEN3_TOPGUN__SKY_H_
+
 #define EMPTY_SKY_TILE '.'
 typedef struct {
   int height;
   int width;
+  Mobile *mobs[10];
+  int used_mobs;
 } Sky;
 
-Sky* createSky(int height, int width);
+Sky *createSky(int height, int width);
 
-void destroySky(Sky* sky);
+void destroySky(Sky *sky);
 
-void displaySky(Sky* sky);
+void displaySky(Sky *sky);
 
-int getSkyHeight(Sky* sky);
+int getSkyHeight(Sky *sky);
 
-int getSkyWidth(Sky* sky);
+int getSkyWidth(Sky *sky);
 
-void putMobileOnSky(Sky* sky, Mobile* mobile);
+void putMobileOnSky(Sky *sky, Mobile *mobile);
 
-#endif //JUNIA_ISEN3_TOPGUN__SKY_H_
+#endif // JUNIA_ISEN3_TOPGUN__SKY_H_
