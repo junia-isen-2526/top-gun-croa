@@ -1,6 +1,9 @@
+#include "Sky.h"
+
 #include <stdio.h>
 
 int main(void) {
-	printf("Hello, World!\n");
-	return 0;
+  Sky *sky = createSky(14, 70);
+  displaySky(sky);
+  return 0;
 }
