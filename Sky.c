@@ -37,8 +37,8 @@ void displaySky(Sky *sky) {
         int diffY = getMobileY(m) - j;
         // overlap check
         if (diffX <= 5 || diffY <= 5) {
+          // TODO mk getter
           putchar(getMobileSprite(m)->symbols[diffY][diffX]);
-          // TODO fetch orientation
           break;
         }
       }

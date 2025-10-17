@@ -19,3 +19,10 @@ void destroySprite(Sprite *sprite) {
     return;
   free(sprite);
 }
+
+char getSpritePos(Sprite *sprite, unsigned int x, unsigned int y,
+                  Direction dir) {
+  if (!sprite || x >= SPRITE_SIZE || y >= SPRITE_SIZE)
+    return '\0';
+  return sprite->symbols[x][y];
+}
